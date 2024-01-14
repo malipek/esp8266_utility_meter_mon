@@ -31,7 +31,7 @@ Utility meter installed by PGE is GAMA 350 series
 
 Following important parts are marked:
 
-1. Infrared optical port, DLMS protocol
+1. Infrared optical port, DLMS protocol (disabled)
 2. Active power consumption LED indicator (1000 pulses for 1 kilo-Watt hour)
 3. Reactive power consumption LED indicator (1000 pulse for 1 kilo-Var hour)
 
