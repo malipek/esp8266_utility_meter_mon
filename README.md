@@ -52,7 +52,7 @@ LDR with the resistance around 100kΩ in the dark in pair with potentiometer RP1
 When resistance on LDR drops to less than hundreds of Ohms (utility meter LED indicator is on), almost all VCC voltage drops across PR1. The gate has near-VCC potential, and the MOSFET is saturated. The current flows through R1 resistor, so voltage on VOut is down to ground. The pulse is sent to the microcontroler.
 
 Pros:
-+ low power consumption during: max around 0.1W,
++ low power consumption: max around 0.1W,
 + compact circuit,
 + very cheap components: around $1.3.
 
