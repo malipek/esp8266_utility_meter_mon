@@ -110,9 +110,9 @@ You may use scope in the configuration as below to check if C1 and R4 values are
 
 ![Screenshot of the scope view with pulse at the RC integrator output](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/RC_integrator_output.png)
 
-Output from RC integrator is passed directly to the gate of 2N7000 N-MOSFET. Normally, GS voltage is around and above VCC, and MOSFET is saturated. Small current flows across R5 and the DOut is shorted to the ground.
+Output from RC integrator is passed directly to the gate of 2N7000 N-MOSFET. Normally, GS's voltage is around VCC, and the MOSFET is saturated. Small current flows across the R5 and the DOut is shorted to the ground. Positive spikes of input signal above the VCC (on comparator's rising edge) don't change that state.
 
-During spike to ground, MOSFET goes to cut-off state, and VOut is pulled up to VCC level, as it's shown on the scope.
+During spikes to the ground on input (comparator's falling edge), the MOSFET goes to cut-off state, and DOut is pulled up to VCC level, as it's shown on the scope.
 
 ![schematics of sensor based on LM393 comparator, integrator and inverter with scope connection points at DOut integrator](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/LM393_integrator_inverter_scope.png)
 
@@ -126,12 +126,12 @@ Pros:
 + works well with hardware interrupt on ESP8266, no dirty hacks needed. 
 
 Cons:
-- power consumption: around 0.33mW,
+- power consumption: around 0.33mW.
 
 
 ### Sensor adjusting
 
-Sensor must be adjusted individually to utility meter, so it's reading is not interfered with light in the room, or neighboring indicators.
+Sensor must be adjusted individually to utility meter (LED intensivity, pulse length), so its reading is not interfered with light in the room, or neighboring indicators.
 
 The voltage drop must detect fast changing signal, so no transient states are present on comparator's output.
 
@@ -146,16 +146,16 @@ Regulation must be done using potentiometer PR1, to achieve the following:
 1. neighboring LED pulse does not trigger pulse,
 ![Screenshot of the scope view with neighboring indicator LED on not triggering sensor's pulse](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/passive_power_pulse.png)
 
-2. pulse is triggered on the fast falling sigal,
+2. pulse is triggered on the fast falling signal,
 ![Screenshot of the scope view with slow-changing LDR voltage marked](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/LDR_voltage_area_to_low.png)
 
 
 3. pulse is triggered on as low voltage drop on LDR as possible.
-![Screenshot of the scope view with markers on LDR voltage drop that ttriggers sensor's pulse](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/LDR_voltage_treshold.png)
+![Screenshot of the scope view with markers on LDR voltage drop that triggers sensor's pulse](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/LDR_voltage_treshold.png)
 
 ### NodeMCUv3 connection
 
-Circuit requires stabilized 3.3V power supply to work properly, connect it to VCC pins on both circuits. DOut is connected to the D6 pin on NodeMCUv3. GND is common ground, connected to negative connection on power supply.
+The circuit requires stabilized 3.3V power supply to work properly. Connect it to VCC pins on both circuits. DOut is connected to the D6 pin on NodeMCUv3. GND is common ground, connected to negative connection on power supply.
 
 ![Schematics of pinout of NodeMCUv3 with sensor's connection points marked.](https://raw.githubusercontent.com/malipek/esp8266_utility_meter_mon/master/assets/NodeMCUv3_connection.png)
 
