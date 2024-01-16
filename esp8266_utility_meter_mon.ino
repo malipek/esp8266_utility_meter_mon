@@ -1,5 +1,5 @@
-// uncomment fot serial debug
-// #define DEBUG
+// uncomment for serial debug
+//#define DEBUG
 
 #include <ESP8266WiFi.h>
 #include "Adafruit_MQTT.h"
@@ -7,7 +7,7 @@
 
 // WIFI setup
 #define WLAN_SSID       "secret"
-#define WLAN_PASS       "evenmoresecret"
+#define WLAN_PASS       "secret"
 
 // MQTT setup
 #define TOPIC           "power_consumed"
@@ -94,21 +94,34 @@ void MQTT_connect() {
 }
 
 ICACHE_RAM_ATTR void count_pulses(){
-  delay(10); //dirty hack for slow changing signals
-  if (digitalRead(pulse_sensor)==LOW){
-    //even more dirty hack for slow changing signals
     counter++;
-  }
 }
+
+/*
+
+// interrupt handler with dirty hack for long pulses
+// when sensor circuit without integrator is used
+
+ICACHE_RAM_ATTR void count_pulses(){
+  delay(10);
+  if (digitalRead(pulse_sensor)==LOW){
+      counter++;
+  }
+
+*/
+
   
 void setup(){
   #ifdef DEBUG
     Serial.begin(9600);
   #endif
   WIFI_connect();
-  pinMode(pulse_sensor, INPUT); //LM939 output is OC/GND, external pullup is used
+  pinMode(pulse_sensor, INPUT); //external pullup is used
+  attachInterrupt(digitalPinToInterrupt(pulse_sensor), count_pulses, RISING);
+  /*
+  // use falling edge for sensor without inverter
   attachInterrupt(digitalPinToInterrupt(pulse_sensor), count_pulses, FALLING);
-  // dirty hack is needed, check https://github.com/espressif/arduino-esp32/issues/4172
+  */
 }
 
 void loop(){
