@@ -35,7 +35,7 @@ Pros:
 
 Cons:
 - very difficult sensitivity regulation, in practice neighboring LED was causing false pulses,
-- [dirty hack in interrupt handler routine had to be implemented due to wide pulse](https://github.com/malipek/esp8266_utility_meter_mon#dirty-hack-on-digital-pin-interrupt).
+- [dirty hack in interrupt handler routine had to be implemented due to wide pulse](https://github.com/malipek/esp8266_utility_meter_mon/blob/master/SOLUTION.md#dirty-hack-on-digital-pin-interrupt).
 
 #### Comparator approach
 
@@ -55,7 +55,7 @@ Pros:
 
 Cons:
 - higher power consumption: around 0.33mW,
-- [dirty hack in interrupt handler routine had to be implemented due to wide pulse](https://github.com/malipek/esp8266_utility_meter_mon#dirty-hack-on-digital-pin-interrupt).
+- [dirty hack in interrupt handler routine had to be implemented due to wide pulse](https://github.com/malipek/esp8266_utility_meter_mon/blob/master/SOLUTION.md#dirty-hack-on-digital-pin-interrupt).
 
 #### Dirty hack on digital pin interrupt
 
@@ -98,7 +98,7 @@ The value of the PR1 should be approximately 2 times R3.
 
 LM393 has open-collector output/ground output, so R1 pull-up is needed.
 
-For manual on setting PR1 adjustment for your utility-meter, check the [Sensor adjusting](https://github.com/malipek/esp8266_utility_meter_mon#sensor-adjusting) section.
+For manual on setting PR1 adjustment for your utility-meter, check the [Sensor adjusting](https://github.com/malipek/esp8266_utility_meter_mon/blob/master/SOLUTION.md#sensor-adjusting) section.
 
 Next stage is RC integrator. Here, spikes are generated, according to how fast input signal is changing. 
 
